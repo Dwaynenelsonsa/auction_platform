@@ -1,6 +1,9 @@
 ﻿import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,7 +19,15 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("Register screen is working. Backend registration is not connected yet.");
+
+    if (!form.name || !form.email || !form.password) {
+      alert("Complete all fields.");
+      return;
+    }
+
+    localStorage.setItem("mpumalanga_registered_user", JSON.stringify(form));
+    alert("Account created. You can now sign in.");
+    navigate("/login");
   };
 
   return (
@@ -61,6 +72,10 @@ function Register() {
 
           <button type="submit">Create account</button>
         </form>
+
+        <p className="auth-switch">
+          Already registered? <Link to="/login">Sign in</Link>
+        </p>
       </section>
     </main>
   );

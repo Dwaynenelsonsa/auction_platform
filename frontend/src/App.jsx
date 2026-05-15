@@ -1,58 +1,34 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Navbar from './components/Layout/Navbar';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
-import ProductDetail from './pages/ProductDetail';
-import Dashboard from './pages/Dashboard';
-import './styles.css';
+﻿import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Layout/Navbar.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Home from "./pages/Home.jsx";
+import ProductDetail from "./pages/ProductDetail.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import { useAuth } from "./context/AuthContext.jsx";
+import "./styles.css";
 
 function App() {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const { user, loading, logout } = useAuth();
 
-    React.useEffect(() => {
-        // Check for session token
-        const token = localStorage.getItem('token');
-        if (token) {
-            fetch('/auth/verify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-            })
-                .then(res => res.json())
-                .then(data => setUser(data.user))
-                .finally(() => setLoading(false));
-        } else {
-            setLoading(false);
-        }
-    }, []);
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        setUser(null);
-    };
+  return (
+    <Router>
+      <Navbar user={user} onLogout={logout} />
 
-    if (loading) {
-        return (
-            <div className="loading">Loading...</div>
-        );
-    }
-
-    return (
-        <Router>
-            <Navbar user={user} onLogout={logout} />
-            <main>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={!user ? <Login /> : <ProductDetail />} />
-                    <Route path="/register" element={!user ? <Register /> : <ProductDetail />} />
-                    <Route path="/product/:id" element={<ProductDetail />} />
-                    <Route path="/dashboard" element={user ? <Dashboard /> : null} />
-                </Routes>
-            </main>
-        </Router>
-    );
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+        <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

@@ -1,6 +1,12 @@
 ﻿import React, { useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function Login() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { login } = useAuth();
+
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -13,9 +19,22 @@ function Login() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    alert("Login screen is working. Backend login is not connected yet.");
+
+    if (!form.email || !form.password) {
+      alert("Enter your email and password.");
+      return;
+    }
+
+    await login(form.email, form.password);
+
+    if (searchParams.get("next") === "sell") {
+      navigate("/dashboard?tab=sell");
+      return;
+    }
+
+    navigate("/dashboard");
   };
 
   return (
@@ -49,6 +68,10 @@ function Login() {
 
           <button type="submit">Sign in</button>
         </form>
+
+        <p className="auth-switch">
+          No account yet? <Link to="/register">Create one</Link>
+        </p>
       </section>
     </main>
   );

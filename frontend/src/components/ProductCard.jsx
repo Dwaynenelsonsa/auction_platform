@@ -1,7 +1,19 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toggleStoredItem, getStoredList } from "../utils/storage.js";
 
 function ProductCard({ product }) {
+  const [isWatched, setIsWatched] = useState(() => {
+    return getStoredList("mpumalanga_watchlist").some((item) => item._id === product._id);
+  });
+
+  const toggleWatch = () => {
+    const result = toggleStoredItem("mpumalanga_watchlist", product);
+    setIsWatched(result.saved);
+
+    alert(result.saved ? "Added to watchlist." : "Removed from watchlist.");
+  };
+
   return (
     <article className="product-card">
       <Link to={`/product/${product._id}`} className="product-image-wrap">
@@ -26,7 +38,9 @@ function ProductCard({ product }) {
 
         <div className="card-actions">
           <Link to={`/product/${product._id}`}>View details</Link>
-          <button type="button">Watch</button>
+          <button type="button" onClick={toggleWatch}>
+            {isWatched ? "Watching" : "Watch"}
+          </button>
         </div>
       </div>
     </article>
