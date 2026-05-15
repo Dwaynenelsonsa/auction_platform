@@ -1,0 +1,24 @@
+/* Styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.loading {
+    text-align: center;
+    margin-top: 50vh;
+}
+
+/* Additional styles as needed */
