@@ -1,24 +1,98 @@
-/* Styles.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+﻿body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #18202a;
 }
 
-.app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
 }
 
-.main-content {
-    padding: 20px;
-    flex: 1;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111827;
+  padding: 16px 28px;
+}
+
+.nav-title {
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav-links a,
+.nav-links button {
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.page {
+  background: white;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.product-card {
+  border: 1px solid #d9e0e8;
+  border-radius: 12px;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.form-card {
+  display: grid;
+  gap: 16px;
+  max-width: 420px;
+}
+
+.form-card label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+input {
+  padding: 11px;
+  border: 1px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+button {
+  padding: 11px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .loading {
-    text-align: center;
-    margin-top: 50vh;
+  text-align: center;
+  margin-top: 40vh;
 }
-
-/* Additional styles as needed */
