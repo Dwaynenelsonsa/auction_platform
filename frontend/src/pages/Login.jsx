@@ -19,36 +19,38 @@ function Login() {
   };
 
   return (
-    <section className="page form-page">
-      <h1>Login</h1>
-      <p>Use this screen to test the login layout. Backend authentication still needs to be connected.</p>
+    <main className="auth-shell">
+      <section className="auth-card">
+        <h1>Sign in</h1>
+        <p>Access your bids, watchlist, and selling dashboard.</p>
 
-      <form onSubmit={handleSubmit} className="form-card">
-        <label>
-          Email
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="email@example.com"
-          />
-        </label>
+        <form onSubmit={handleSubmit} className="form-card">
+          <label>
+            Email
+            <input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="email@example.com"
+            />
+          </label>
 
-        <label>
-          Password
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            placeholder="Password"
-          />
-        </label>
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </label>
 
-        <button type="submit">Login</button>
-      </form>
-    </section>
+          <button type="submit">Sign in</button>
+        </form>
+      </section>
+    </main>
   );
 }
 

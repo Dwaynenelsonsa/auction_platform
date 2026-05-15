@@ -20,47 +20,49 @@ function Register() {
   };
 
   return (
-    <section className="page form-page">
-      <h1>Register</h1>
-      <p>Create account layout is working. Backend registration still needs to be connected.</p>
+    <main className="auth-shell">
+      <section className="auth-card">
+        <h1>Create an account</h1>
+        <p>Start bidding, selling, and tracking auction deals.</p>
 
-      <form onSubmit={handleSubmit} className="form-card">
-        <label>
-          Name
-          <input
-            name="name"
-            type="text"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Your name"
-          />
-        </label>
+        <form onSubmit={handleSubmit} className="form-card">
+          <label>
+            Name
+            <input
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Your name"
+            />
+          </label>
 
-        <label>
-          Email
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="email@example.com"
-          />
-        </label>
+          <label>
+            Email
+            <input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="email@example.com"
+            />
+          </label>
 
-        <label>
-          Password
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            placeholder="Password"
-          />
-        </label>
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </label>
 
-        <button type="submit">Create Account</button>
-      </form>
-    </section>
+          <button type="submit">Create account</button>
+        </form>
+      </section>
+    </main>
   );
 }
 
